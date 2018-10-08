@@ -1,0 +1,1 @@
+{"code":"import Downloader from './downloader';\r\nvar SVGA = {\r\n    Downloader: Downloader\r\n};\r\nexport default SVGA;\r\n"}

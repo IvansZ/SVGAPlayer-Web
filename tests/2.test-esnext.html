@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>SVGA Lite</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="svga.lite.min.js"></script>
+</head>
+<body>
+  <script>
+    (async () => {
+      const { Downloader, Parser } = SVGA
+
+      const downloader = new Downloader('./assets/TwitterHeart.svga')
+
+      const fileData = await downloader.request()
+
+      console.log('File Data', fileData)
+
+      const parser = new Parser('svga.lite.worker.min.js')
+
+      const svgaData = await parser.do(fileData)
+
+      console.log('SVGA Data', svgaData)
+    })()
+  </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>SVGA Lite</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="./svga.lite.min.js"></script>
+</head>
+<body>
+  <script>
+    var Downloader = window.SVGA.Downloader
+
+    var downloader = new Downloader('./assets/TwitterHeart.svga')
+
+    downloader.request().then(function (data) {
+      console.log(data)
+    })
+  </script>
+</body>
+</html>

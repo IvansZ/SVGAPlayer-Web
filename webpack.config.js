@@ -1,34 +1,72 @@
-var path = require('path');
-var webpack = require('webpack')
+const path = require('path')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
-module.exports = {
+const defaultConfig = {
+  mode: 'production',
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: [
+          'babel-loader'
+        ]
+      },
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        use: [
+          'babel-loader',
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true
+            }
+          }
+        ]
+      }
+    ]
+  },
+  plugins: [
+    new ForkTsCheckerWebpackPlugin({
+      workers: 2,
+      formatter: 'codeframe'
+    })
+  ],
+  resolve: {
+    extensions: ['.js', '.ts']
+  },
+  context: path.resolve(__dirname, './'),
+  devServer: {
+    contentBase: path.join(__dirname, 'tests')
+  },
+  performance: {
+    maxEntrypointSize: 300000,
+    maxAssetSize: 300000
+  }
+}
+
+module.exports = [
+  {
     entry: {
-        "svga.min": "./src/Canvas/index.js",
-        "svga.createjs.min": "./src/CreateJS/index.js",
-        "svga.layabox.min": "./src/LayaBox/index.js",
+      'svga.lite': './core/index.ts'
     },
     output: {
-        path: __dirname,
-        filename: "build/[name].js",
-        libraryTarget: 'umd',
-        library: 'SVGA',
+      path: path.resolve(__dirname, process.env.NODE_ENV === 'test' ? 'tests' : 'dist'),
+      filename: '[name].min.js',
+      libraryTarget: 'umd',
+      library: 'SVGA',
+      libraryExport: 'default'
     },
-    module: {
-        loaders: [
-            {
-                test: path.join(__dirname, 'src'),
-                loader: 'babel-loader',
-                query: {
-                    presets: ['es2015', "stage-0"]
-                }
-            }
-        ],
+    ...defaultConfig
+  },
+  {
+    entry: {
+      'svga.lite.worker': './core/worker.ts'
     },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            include: /\.min\.js$/,
-            minimize: true,
-            output: { comments: false },
-        })
-    ],
-}
+    output: {
+      path: path.resolve(__dirname, process.env.NODE_ENV === 'test' ? 'tests' : 'dist'),
+      filename: '[name].min.js'
+    },
+    ...defaultConfig
+  }
+]
