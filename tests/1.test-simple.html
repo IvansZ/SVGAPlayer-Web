@@ -9,12 +9,15 @@
 </head>
 <body>
   <script>
-    var Downloader = window.SVGA.Downloader
+    var downloader = new window.SVGA.Downloader('./assets/angel.svga')
+    var parser = new window.SVGA.Parser()
 
-    var downloader = new Downloader('./assets/TwitterHeart.svga')
-
-    downloader.request().then(function (data) {
-      console.log(data)
+    downloader.request().then(function (fileData) {
+      parser.initWorker('svga.lite.worker.min.js').then(function () {
+        parser.do(fileData).then(function (svgaData) {
+          console.log(svgaData)
+        })
+      })
     })
   </script>
 </body>

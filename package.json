@@ -17,7 +17,6 @@
     "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/runtime-corejs2": "^7.0.0",
-    "@types/pako": "^1.0.0",
     "@types/protobufjs": "^6.0.0",
     "babel-loader": "^8.0.4",
     "fork-ts-checker-webpack-plugin": "^0.4.10",

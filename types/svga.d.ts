@@ -48,3 +48,18 @@ interface VideoEntity {
   images: { [key: string]: any }
   sprites: Array<any>
 }
+
+interface SVGAFileData {
+  images: { [key: string]: string }
+  movie: {
+    images: { [key: string]: string }
+    params: {
+      fps: Number
+      frames: Number
+      viewBoxHeight: Number
+      viewBoxWidth: Number
+    }
+  }
+  sprites: Array<Object>
+  version: SVGA_VERSION
+}

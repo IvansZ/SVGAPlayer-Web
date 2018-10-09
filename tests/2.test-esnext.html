@@ -18,7 +18,9 @@
 
       console.log('File Data', fileData)
 
-      const parser = new Parser('svga.lite.worker.min.js')
+      const parser = new Parser()
+
+      await parser.initWorker('svga.lite.worker.min.js')
 
       const svgaData = await parser.do(fileData)
 

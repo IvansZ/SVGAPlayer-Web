@@ -1,5 +1,18 @@
 const path = require('path')
+const webpack = require('webpack')
+const moment = require('moment')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+
+const { version } = require('./package.json')
+
+const banner =
+`[name].min.js
+
+Version: ${version}
+Time: ${moment().format('YYYY-MM-DD HH:mm')}
+Document: https://github.com/yyued/SVGAPlayer-Web/tree/lite
+(c) 2018 YY.UEDC
+Released under the MIT License.`
 
 const defaultConfig = {
   mode: 'production',
@@ -30,14 +43,16 @@ const defaultConfig = {
     new ForkTsCheckerWebpackPlugin({
       workers: 2,
       formatter: 'codeframe'
-    })
+    }),
+    new webpack.BannerPlugin(banner)
   ],
   resolve: {
     extensions: ['.js', '.ts']
   },
   context: path.resolve(__dirname, './'),
   devServer: {
-    contentBase: path.join(__dirname, 'tests')
+    contentBase: path.join(__dirname, 'tests'),
+    watchContentBase: true
   },
   performance: {
     maxEntrypointSize: 300000,
