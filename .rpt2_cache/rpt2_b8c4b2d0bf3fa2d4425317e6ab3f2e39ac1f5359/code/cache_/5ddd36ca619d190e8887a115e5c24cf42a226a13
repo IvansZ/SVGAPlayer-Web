@@ -1,1 +1,0 @@
-{"code":"import Downloader from './downloader';\r\nconst SVGA = {\r\n    Downloader\r\n};\r\nexport default SVGA;\r\n"}

@@ -13,10 +13,8 @@
     var parser = new window.SVGA.Parser()
 
     downloader.request().then(function (fileData) {
-      parser.initWorker('svga.lite.worker.min.js').then(function () {
-        parser.do(fileData).then(function (svgaData) {
-          console.log(svgaData)
-        })
+      parser.do(fileData).then(function (svgaData) {
+        console.log(svgaData)
       })
     })
   </script>

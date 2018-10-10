@@ -19,7 +19,7 @@ interface VideoSize {
   height: number
 }
 
-declare enum SVGA_VERSION {
+enum SVGA_VERSION {
   VERSION_1_0 = '1.0',
   VERSION_1_5 = '1.5',
   VERSION_2_0 = '2.0',
@@ -47,19 +47,4 @@ interface VideoEntity {
   frames: number
   images: { [key: string]: any }
   sprites: Array<any>
-}
-
-interface SVGAFileData {
-  images: { [key: string]: string }
-  movie: {
-    images: { [key: string]: string }
-    params: {
-      fps: Number
-      frames: Number
-      viewBoxHeight: Number
-      viewBoxWidth: Number
-    }
-  }
-  sprites: Array<Object>
-  version: SVGA_VERSION
 }

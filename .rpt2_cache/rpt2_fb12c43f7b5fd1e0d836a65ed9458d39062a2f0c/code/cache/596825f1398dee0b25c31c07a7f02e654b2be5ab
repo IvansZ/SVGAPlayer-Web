@@ -1,1 +1,0 @@
-{"code":"var Downloader = /** @class */ (function () {\r\n    function Downloader() {\r\n    }\r\n    return Downloader;\r\n}());\r\nexport default Downloader;\r\n"}

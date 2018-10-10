@@ -1,1 +1,0 @@
-{"code":"import Downloader from './downloader';\r\nexport default {\r\n    Downloader: Downloader\r\n};\r\n"}

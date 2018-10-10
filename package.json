@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:test": "NODE_ENV=test webpack --config webpack.config.js",
-    "test": "webpack-dev-server"
+    "test": "node ./scripts/test.js"
   },
   "author": "lijialiang<lijialiang@yy.com>",
   "license": "MIT",
@@ -19,7 +18,10 @@
     "@babel/runtime-corejs2": "^7.0.0",
     "@types/protobufjs": "^6.0.0",
     "babel-loader": "^8.0.4",
+    "browser-sync": "^2.26.0",
+    "del": "^3.0.0",
     "fork-ts-checker-webpack-plugin": "^0.4.10",
+    "fs-extra": "^7.0.0",
     "moment": "^2.22.2",
     "ts-loader": "^5.2.1",
     "typescript": "^3.1.1",
