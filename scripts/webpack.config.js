@@ -82,7 +82,7 @@ module.exports = [
   },
   {
     entry: {
-      'svga.lite.worker': './core/worker.ts'
+      'svga.lite.worker': './core/worker/index.ts'
     },
     output: {
       path: outputPath,

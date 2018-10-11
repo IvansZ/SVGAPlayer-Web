@@ -11,6 +11,10 @@ export default class Player implements Player {
   public renderer: any
   public videoItem: any
   public animator: any
+  public globalTransform: any
+  private dynamicImage = { }
+  private dynamicImageTransform = { }
+  private dynamicText = { }
 
   constructor (elementSelector: string) {
     elementSelector && (this.container = <HTMLCanvasElement>document.body.querySelector(elementSelector))
@@ -118,13 +122,8 @@ export default class Player implements Player {
   /**
    * Private methods & properties
    */
-  private asChild = false;
   private contentMode = 'AspectFit'
   private currentFrame = 0;
-  private dynamicImage = { };
-  private dynamicImageTransform = { };
-  private dynamicText = { };
-  private globalTransform: any = undefined;
 
   _onFrame: any;
   _onPercentage: any;

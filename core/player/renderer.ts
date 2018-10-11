@@ -1,4 +1,6 @@
-import { BezierPath, EllipsePath, RectPath } from '../common/path-species'
+import BezierPath from '../common/bezier-path'
+import EllipsePath from '../common/ellipse-path'
+import RectPath from '../common/rect-path'
 
 const validMethods = 'MLHVCSQRZmlhvcsqrz'
 

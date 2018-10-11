@@ -7,7 +7,7 @@ export default class Parser implements Parser {
     this.worker = new Worker(window.URL.createObjectURL(new Blob(['#INLINE_WROKER#'])))
   }
 
-  do (data: ArrayBuffer): void | Promise<SVGAFileData> {
+  do (data: ArrayBuffer): void | Promise<Object> {
     if (!data) {
       throw new Error('Parser Data not found')
     }

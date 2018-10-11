@@ -11,5 +11,5 @@ module.exports = function (env) {
 
   fs.writeFileSync(coreFile, core.replace('"#INLINE_WROKER#"', JSON.stringify(worker).replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029')), 'utf8')
 
-  del.sync(workerFile, { force: true })
+  // del.sync(workerFile, { force: true })
 }

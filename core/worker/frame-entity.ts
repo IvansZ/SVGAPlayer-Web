@@ -1,26 +1,4 @@
-/// <reference path="../types/pako.d.ts" />
-
-import * as pakoInflate from 'pako/lib/inflate'
-import { Root } from 'protobufjs'
-import svgaFileDataDescriptor from './common/svga-file-data-descriptor'
-import { BezierPath } from './common/path-species'
-
-declare var self: Worker
-
-const proto = Root.fromJSON(svgaFileDataDescriptor)
-const message = proto.lookupType('com.opensource.svga.MovieEntity')
-
-const Uint8ToString = (u8a: Uint8Array): string => {
-  const CHUNK_SZ = 0x8000
-
-  const changeArray = []
-
-  for (let i = 0; i < u8a.length; i += CHUNK_SZ) {
-    changeArray.push(String.fromCharCode.apply(null, u8a.subarray(i, i + CHUNK_SZ)))
-  }
-
-  return changeArray.join('')
-}
+import BezierPath from '../common/bezier-path'
 
 const transformMake = (a: number, b: number, c: number, d: number, tx: number, ty: number): Transform => {
   return { a, b, c, d, tx, ty }
@@ -30,7 +8,7 @@ const rectMake = (x: number, y: number, width: number, height: number): Rect => 
   return { x, y, width, height }
 }
 
-class FrameEntity implements FrameEntity {
+export default class FrameEntity implements FrameEntity {
   public alpha = 0.0
   public transform = transformMake(1, 0, 0, 1, 0, 0)
   public nx = 0.0
@@ -158,58 +136,4 @@ class FrameEntity implements FrameEntity {
     this.nx = Math.min(Math.min(lbx, rbx), Math.min(llx, lrx))
     this.ny = Math.min(Math.min(lby, rby), Math.min(lly, lry))
   }
-}
-
-class SpriteEntity implements SpriteEntity {
-  public imageKey?: string
-  public frames: Array<FrameEntity> = []
-
-  constructor (spec: any) {
-    this.imageKey = spec.imageKey
-
-    spec.frames && (this.frames = spec.frames.map((obj: any) => {
-      return new FrameEntity(obj)
-    }))
-  }
-}
-
-class VideoEntity implements VideoEntity {
-  public version: string
-  public videoSize: VideoSize = { width: 0, height: 0 }
-  public FPS: number
-  public frames: number
-  public images = {}
-  public sprites: Array<SpriteEntity> = []
-
-  constructor (spec: any, images: any) {
-    this.version = spec.version
-    this.videoSize.width = spec.params.viewBoxWidth || 0.0
-    this.videoSize.height = spec.params.viewBoxHeight || 0.0
-    this.FPS = spec.params.fps || 20
-    this.frames = spec.params.frames || 0
-
-    spec.sprites instanceof Array && (this.sprites = spec.sprites.map((obj: any) => {
-      return new SpriteEntity(obj)
-    }))
-
-    images && (this.images = images)
-  }
-}
-
-self.onmessage = function (event) {
-  const inflateData: Uint8Array = pakoInflate.inflate(new Uint8Array(event.data))
-
-  const movie: any = message.decode(inflateData)
-
-  const images: { [key: string]: string } = {}
-
-  for (let key in movie.images) {
-    const element = movie.images[key]
-
-    const value = Uint8ToString(element)
-
-    images[key] = btoa(value)
-  }
-
-  self.postMessage(new VideoEntity(movie, images))
 }
