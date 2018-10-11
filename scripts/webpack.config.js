@@ -55,7 +55,7 @@ const defaultConfig = {
   }
 }
 
-const outputPath = path.resolve(__dirname, `../${process.env.NODE_ENV === 'test' ? 'tests' : 'dist'}`)
+const outputPath = path.resolve(__dirname, `../${process.env.NODE_ENV === 'test' ? 'tests/dist' : 'dist'}`)
 
 const ForkTsCheckerWebpackPluginConfig = new ForkTsCheckerWebpackPlugin({
   workers: 2,

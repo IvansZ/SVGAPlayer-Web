@@ -20,7 +20,8 @@ const BrowserSyncOptions = {
   port: 8080,
   open: true,
   timestamps: true,
-  watch: true
+  watch: true,
+  ignore: ['dist']
 }
 
 webpack(config, (error, stats) => {

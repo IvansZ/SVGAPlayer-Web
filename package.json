@@ -2,7 +2,7 @@
   "name": "svga.lite",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/svga.lite.min.js",
   "scripts": {
     "test": "node ./scripts/test.js"
   },
