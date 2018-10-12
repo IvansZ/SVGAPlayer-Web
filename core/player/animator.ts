@@ -1,5 +1,5 @@
 export default class Animator {
-  static currentTimeMillsecond: () => number = () => {
+  private static _currentTimeMillsecond: () => number = () => {
     if (typeof performance === 'undefined') {
       return new Date().getTime()
     }
@@ -7,93 +7,73 @@ export default class Animator {
     return performance.now()
   }
 
-  static requestAnimationFrame: (callback: () => void) => any = (callback) => {
-    if (typeof requestAnimationFrame === 'undefined') {
-      return setTimeout(callback, 16)
-    }
-
-    return window.requestAnimationFrame(callback)
+  private static _requestAnimationFrame: (callback: () => void) => any = (callback) => {
+    callback && setTimeout(callback, 16)
   }
 
-  public startValue: number = 0;
-  public endValue: number = 0;
-  public duration: number = 0;
-  public loops: number = 1;
-  public fillRule: number = 0;
+  public startValue: number = 0
+  public endValue: number = 0
+  public duration: number = 0
+  public loop: number = 1
+  public fillRule: number = 0
 
-  public onStart: () => void = () => { };
-  public onUpdate: (currentValue: number) => void = () => { };
-  public onEnd: () => void = () => { };
+  public onStart: () => any = () => {}
+  public onUpdate: (currentValue: number) => any = () => {}
+  public onEnd: () => any = () => {}
 
-  public start (currentValue: number | undefined = undefined) {
-    this.doStart(false, currentValue)
-  }
-
-  public reverse (currentValue: number | undefined = undefined) {
-    this.doStart(true, currentValue)
+  public start (currentValue: number) {
+    this.doStart(currentValue)
   }
 
   public stop () {
-    this.doStop()
+    this._doStop()
   }
 
   public get animatedValue (): number {
-    return ((this.endValue - this.startValue) * this.mCurrentFrication) + this.startValue
+    return ((this.endValue - this.startValue) * this._mCurrentFrication) + this.startValue
   }
 
-  private mRunning = false;
-  private mStartTime = 0;
-  private mCurrentFrication: number = 0.0;
-  private mReverse = false;
+  private _mRunning = false
+  private _mStartTime = 0
+  private _mCurrentFrication: number = 0.0
 
-  private doStart (reverse: boolean = false, currentValue: number | undefined = undefined) {
-    this.mReverse = reverse
-    this.mRunning = true
-    this.mStartTime = Animator.currentTimeMillsecond()
+  private doStart (currentValue: number) {
+    this._mRunning = true
+    this._mStartTime = Animator._currentTimeMillsecond()
 
-    if (currentValue) {
-      if (reverse) {
-        this.mStartTime -= (1.0 - currentValue / (this.endValue - this.startValue)) * this.duration
-      } else {
-        this.mStartTime -= currentValue / (this.endValue - this.startValue) * this.duration
-      }
-    }
+    currentValue && (this._mStartTime -= currentValue / (this.endValue - this.startValue) * this.duration)
 
-    this.mCurrentFrication = 0.0
+    this._mCurrentFrication = 0.0
 
     this.onStart()
-    this.doFrame()
+    this._doFrame()
   }
 
-  private doStop () {
-    this.mRunning = false
+  private _doStop () {
+    this._mRunning = false
   }
 
-  private doFrame () {
-    if (this.mRunning) {
-      this.doDeltaTime(Animator.currentTimeMillsecond() - this.mStartTime)
+  private _doFrame () {
+    if (this._mRunning) {
+      this._doDeltaTime(Animator._currentTimeMillsecond() - this._mStartTime)
 
-      if (this.mRunning) {
-        Animator.requestAnimationFrame(this.doFrame.bind(this))
+      if (this._mRunning) {
+        Animator._requestAnimationFrame(this._doFrame.bind(this))
       }
     }
   }
 
-  private doDeltaTime (deltaTime: number) {
-    if (deltaTime >= this.duration * this.loops) {
-      this.mCurrentFrication = this.fillRule === 1 ? 0.0 : 1.0
-      this.mRunning = false
+  private _doDeltaTime (deltaTime: number) {
+    if (deltaTime >= this.duration * this.loop) {
+      this._mCurrentFrication = this.fillRule === 1 ? 0.0 : 1.0
+      this._mRunning = false
     } else {
-      this.mCurrentFrication = (deltaTime % this.duration) / this.duration
-
-      if (this.mReverse) {
-        this.mCurrentFrication = 1.0 - this.mCurrentFrication
-      }
+      this._mCurrentFrication = (deltaTime % this.duration) / this.duration
     }
 
     this.onUpdate(this.animatedValue)
 
-    if (this.mRunning === false) {
+    if (this._mRunning === false) {
       this.onEnd()
     }
   }

@@ -9,4 +9,3 @@ export default (u8a: Uint8Array): string => {
 
   return changeArray.join('')
 }
-
