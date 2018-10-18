@@ -4,7 +4,8 @@
   "description": "",
   "main": "dist/svga.lite.min.js",
   "scripts": {
-    "test": "node ./scripts/test.js"
+    "test": "node ./scripts/test.js",
+    "benchmark": "node ./scripts/benchmark.js"
   },
   "author": "lijialiang<lijialiang@yy.com>",
   "license": "MIT",

@@ -1,5 +1,5 @@
 interface Parser {
-  worker?: Worker
+  constructor ({ worker }: { worker: Boolean })
 
   do (data: ArrayBuffer): Promise<Object>
 }

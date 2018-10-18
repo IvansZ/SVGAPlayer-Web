@@ -6,12 +6,26 @@ import { Zlib } from 'zlibjs/bin/inflate.min.js'
 import u8aToString from './u8a-to-string'
 import VideoEntity from './video-entity'
 
-declare var self: Worker
+declare var self: any
+
+let worker: any
+
+if (!self.document) {
+  worker = self
+} else {
+  worker = self.SVGAMockWorker = {}
+
+  worker.mock = true
+
+  worker.postMessage = function (data: VideoEntity) {
+    worker.onmessageCallback && worker.onmessageCallback(data)
+  }
+}
 
 const proto = Root.fromJSON(svgaFileDataDescriptor)
 const message = proto.lookupType('com.opensource.svga.MovieEntity')
 
-self.onmessage = function (event) {
+worker.onmessage = function (event: any) {
   const inflateData: Uint8Array = (new Zlib.Inflate(new Uint8Array(event.data))).decompress()
 
   const movie: any = message.decode(inflateData)
@@ -26,5 +40,5 @@ self.onmessage = function (event) {
     images[key] = btoa(value)
   }
 
-  self.postMessage(new VideoEntity(movie, images))
+  worker.postMessage(new VideoEntity(movie, images))
 }

@@ -22,7 +22,7 @@
 
       console.log('File Data', fileData)
 
-      const parser = new Parser()
+      const parser = new Parser({ worker: true })
 
       const svgaData = await parser.do(fileData)
 

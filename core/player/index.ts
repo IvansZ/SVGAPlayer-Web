@@ -116,8 +116,6 @@ export default class Player implements Player {
       this.currentFrame = value
 
       // FIXME: progress 不连续
-      console.log(value)
-      console.log(this.videoItem.frames)
       this.progress = parseFloat((value + 1).toString()) / parseFloat(this.videoItem.frames.toString()) * 100
 
       this._renderer.drawFrame(this.currentFrame)
