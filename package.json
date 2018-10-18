@@ -5,9 +5,11 @@
   "main": "dist/svga.lite.min.js",
   "scripts": {
     "test": "node ./scripts/test.js",
-    "benchmark": "node ./scripts/benchmark.js"
+    "benchmark": "node ./scripts/benchmark.js",
+    "build": "node ./scripts/build.js",
+    "prepublish": "npm run build"
   },
-  "author": "lijialiang<lijialiang@yy.com>",
+  "author": "YY.UED<ued-tech@yy.com>",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.1.0",

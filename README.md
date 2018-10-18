@@ -8,7 +8,7 @@ This is a SVGA player on the Web, and its goal is to be lighter and more efficie
 
 - [x] Size < 90k
 - [x] Compatible Android 4+ / iOS 9+
-- [x] Better asynchronous operation
+- [x] Better Asynchronous Operation
 - [x] Multi-threaded (WebWorker/WebAssembly) parsing file data
 
 ## Experimental
