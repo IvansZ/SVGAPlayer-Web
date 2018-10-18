@@ -4,15 +4,15 @@
 
 ## 目标未来
 
-- [] 体积 < 100k
-- [] 兼容 Android 4+ / iOS 9+
-- [] 更好的异步操作
-- [] 多线程 (WebWorker/WebAssembly) 分析文件数据
+- [x] 体积 < 90k
+- [x] 兼容 Android 4+ / iOS 9+
+- [x] 更好的异步操作
+- [x] 多线程 (WebWorker/WebAssembly) 分析文件数据
 
 ## 实验性
 
-- [] 渲染引擎模拟运行在 WebWorker
-- [] GPU 加速运算
+- [ ] 渲染引擎模拟运行在 WebWorker
+- [ ] GPU 加速运算
 
 ## LICENSE
 

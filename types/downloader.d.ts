@@ -1,7 +1,3 @@
 interface Downloader {
-  svgaResourceAddress: string
-
-  constructor (svgaResourceAddress: string): Downloader
-
-  request (): Promise<ArrayBuffer>
+  request (svgaResourceLink: string): Promise<ArrayBuffer>
 }

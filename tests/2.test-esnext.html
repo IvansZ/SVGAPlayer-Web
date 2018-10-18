@@ -14,11 +14,13 @@
     (async () => {
       const { Downloader, Parser, Player } = SVGA
 
-      // const downloader = new Downloader('./assets/angel.svga')
-      const downloader = new Downloader('./assets/TwitterHeart.svga')
-      // const downloader = new Downloader('./assets/kingset.svga')
+      const downloader = new Downloader()
 
-      const fileData = await downloader.request()
+      const svgaFile = './assets/TwitterHeart.svga'
+      // const svgaFile = './assets/angel.svga'
+      // const svgaFile = './assets/kingset.svga'
+
+      const fileData = await downloader.request(svgaFile)
 
       console.log('File Data', fileData)
 
@@ -54,7 +56,8 @@
 
       player.set({
         loop: 1,
-        fillMode: 'backwards'
+        fillMode: 'forwards'
+        // fillMode: 'backwards'
       })
 
       console.log(player)

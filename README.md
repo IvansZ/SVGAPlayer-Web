@@ -6,15 +6,15 @@ This is a SVGA player on the Web, and its goal is to be lighter and more efficie
 
 ## Target Future
 
-- [] Size < 100k
-- [] Compatible Android 4+ / iOS 9+
-- [] Better asynchronous operation
-- [] Multi-threaded (WebWorker/WebAssembly) parsing file data
+- [x] Size < 90k
+- [x] Compatible Android 4+ / iOS 9+
+- [x] Better asynchronous operation
+- [x] Multi-threaded (WebWorker/WebAssembly) parsing file data
 
 ## Experimental
 
-- [] Rendering engine simulation runs in the WebWorker
-- [] GPU accelerated operation
+- [ ] Rendering engine simulation runs in the WebWorker
+- [ ] GPU accelerated operation
 
 ## LICENSE
 

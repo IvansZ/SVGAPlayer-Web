@@ -1,15 +1,13 @@
 export default class Downloader implements Downloader {
-  public svgaResourceAddress: string = ''
+  request (svgaResourceLink: string) {
+    if (!svgaResourceLink) {
+      throw new Error('download link undefined')
+    }
 
-  constructor (svgaResourceAddress: string) {
-    this.svgaResourceAddress = svgaResourceAddress
-  }
-
-  request () {
     return new Promise((resolve, reject) => {
       const request = new XMLHttpRequest()
 
-      request.open('GET', this.svgaResourceAddress, true)
+      request.open('GET', svgaResourceLink, true)
 
       request.responseType = 'arraybuffer'
 
