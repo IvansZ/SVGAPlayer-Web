@@ -9,10 +9,11 @@ This is a SVGA player on the Web, and its goal is to be lighter and more efficie
 - [x] Size = 80kb (gzip = 27kb)
 - [x] Compatible Android 4+ / iOS 9+
 - [x] Better Asynchronous Operation
-- [x] Multi-threaded (WebWorker/WebAssembly) parsing file data
+- [x] Multi-threaded (WebWorker) parsing file data
 
 ## Experimental
 
+- [ ] Use WebAssembly instead of WebWorker
 - [ ] Rendering engine simulation runs in the WebWorker
 - [ ] GPU accelerated operation
 
@@ -37,7 +38,7 @@ yarn add svga.lite
 ## Simple Use
 
 ```js
-const { Downloader, Parser, Player } = SVGA
+import { Downloader, Parser, Player } from 'svga.lite'
 
 const downloader = new Downloader()
 const parser = new Parser()

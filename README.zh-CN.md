@@ -7,10 +7,11 @@
 - [x] 体积 = 80k (gzip = 27kb)
 - [x] 兼容 Android 4+ / iOS 9+
 - [x] 更好的异步操作
-- [x] 多线程 (WebWorker/WebAssembly) 解析文件数据
+- [x] 多线程 (WebWorker) 解析文件数据
 
 ## 实验性
 
+- [ ] 使用 WebAssembly 替代 WebWorker
 - [ ] 渲染引擎模拟运行在 WebWorker
 - [ ] GPU 加速运算
 
@@ -35,7 +36,7 @@ yarn add svga.lite
 ## 简单使用
 
 ```js
-const { Downloader, Parser, Player } = SVGA
+import { Downloader, Parser, Player } from 'svga.lite'
 
 const downloader = new Downloader()
 const parser = new Parser()
