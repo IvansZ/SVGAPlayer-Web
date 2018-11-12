@@ -4,15 +4,33 @@
 
 ## 目标未来
 
-- [x] 体积 < 80k
+- [x] 体积 = 80k (gzip = 27kb)
 - [x] 兼容 Android 4+ / iOS 9+
 - [x] 更好的异步操作
-- [x] 多线程 (WebWorker/WebAssembly) 分析文件数据
+- [x] 多线程 (WebWorker/WebAssembly) 解析文件数据
 
 ## 实验性
 
 - [ ] 渲染引擎模拟运行在 WebWorker
 - [ ] GPU 加速运算
+
+## 安装
+
+### NPM
+
+```sh
+npm i svga.lite
+
+# or
+
+yarn add svga.lite
+```
+
+### CDN
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/svga.lite/dist/svga.lite.min.js"></script>
+```
 
 ## 简单使用
 

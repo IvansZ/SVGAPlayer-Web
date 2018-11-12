@@ -6,7 +6,7 @@ This is a SVGA player on the Web, and its goal is to be lighter and more efficie
 
 ## Target Future
 
-- [x] Size < 80k
+- [x] Size = 80kb (gzip = 27kb)
 - [x] Compatible Android 4+ / iOS 9+
 - [x] Better Asynchronous Operation
 - [x] Multi-threaded (WebWorker/WebAssembly) parsing file data
@@ -15,6 +15,24 @@ This is a SVGA player on the Web, and its goal is to be lighter and more efficie
 
 - [ ] Rendering engine simulation runs in the WebWorker
 - [ ] GPU accelerated operation
+
+## Install
+
+### NPM
+
+```sh
+npm i svga.lite
+
+# or
+
+yarn add svga.lite
+```
+
+### CDN
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/svga.lite/dist/svga.lite.min.js"></script>
+```
 
 ## Simple Use
 
