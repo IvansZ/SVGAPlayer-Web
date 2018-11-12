@@ -45,7 +45,7 @@ const parser = new Parser()
 const player = new Player('#canvas')
 
 ;(async () => {
-  const fileData = await downloader.request('./xxx.svga')
+  const fileData = await downloader.get('./xxx.svga')
   const svgaData = await parser.do(fileData)
 
   player.set({

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>SVGA Lite</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="maximum-scale=1, width=device-width, initial-scale=1, user-scalable=0">
   <script src="svga.lite.min.js"></script>
 </head>
 <body>
@@ -16,11 +16,11 @@
 
       const downloader = new Downloader()
 
-      const svgaFile = './assets/TwitterHeart.svga'
-      // const svgaFile = './assets/angel.svga'
-      // const svgaFile = './assets/kingset.svga'
+      const svgaFile = './svga/TwitterHeart.svga'
+      // const svgaFile = './svga/angel.svga'
+      // const svgaFile = './svga/kingset.svga'
 
-      const fileData = await downloader.request(svgaFile)
+      const fileData = await downloader.get(svgaFile)
 
       console.log('File Data', fileData)
 

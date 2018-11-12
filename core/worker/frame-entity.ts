@@ -63,19 +63,19 @@ export default class FrameEntity implements FrameEntity {
 
           if (shape.styles) {
             if (shape.styles.fill) {
-              if (typeof shape.styles.fill['r'] === 'number') shape.styles.fill[ 0 ] = shape.styles.fill['r']
-              if (typeof shape.styles.fill['g'] === 'number') shape.styles.fill[ 1 ] = shape.styles.fill['g']
-              if (typeof shape.styles.fill['b'] === 'number') shape.styles.fill[ 2 ] = shape.styles.fill['b']
-              if (typeof shape.styles.fill['a'] === 'number') shape.styles.fill[ 3 ] = shape.styles.fill['a']
+              if (typeof shape.styles.fill['r'] === 'number') shape.styles.fill[0] = shape.styles.fill['r']
+              if (typeof shape.styles.fill['g'] === 'number') shape.styles.fill[1] = shape.styles.fill['g']
+              if (typeof shape.styles.fill['b'] === 'number') shape.styles.fill[2] = shape.styles.fill['b']
+              if (typeof shape.styles.fill['a'] === 'number') shape.styles.fill[3] = shape.styles.fill['a']
             }
             if (shape.styles.stroke) {
-              if (typeof shape.styles.stroke['r'] === 'number') shape.styles.stroke[ 0 ] = shape.styles.stroke['r']
-              if (typeof shape.styles.stroke['g'] === 'number') shape.styles.stroke[ 1 ] = shape.styles.stroke['g']
-              if (typeof shape.styles.stroke['b'] === 'number') shape.styles.stroke[ 2 ] = shape.styles.stroke['b']
-              if (typeof shape.styles.stroke['a'] === 'number') shape.styles.stroke[ 3 ] = shape.styles.stroke['a']
+              if (typeof shape.styles.stroke['r'] === 'number') shape.styles.stroke[0] = shape.styles.stroke['r']
+              if (typeof shape.styles.stroke['g'] === 'number') shape.styles.stroke[1] = shape.styles.stroke['g']
+              if (typeof shape.styles.stroke['b'] === 'number') shape.styles.stroke[2] = shape.styles.stroke['b']
+              if (typeof shape.styles.stroke['a'] === 'number') shape.styles.stroke[3] = shape.styles.stroke['a']
             }
 
-            let lineDash = shape.styles.lineDash || [ ]
+            let lineDash = shape.styles.lineDash || []
 
             if (shape.styles.lineDashI > 0) {
               lineDash.push(shape.styles.lineDashI)
@@ -89,7 +89,7 @@ export default class FrameEntity implements FrameEntity {
 
             if (shape.styles.lineDashIII > 0) {
               if (lineDash.length < 2) { lineDash.push(0); lineDash.push(0) }
-              lineDash[ 2 ] = shape.styles.lineDashIII
+              lineDash[2] = shape.styles.lineDashIII
             }
 
             shape.styles.lineDash = lineDash

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>SVGA Lite</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="maximum-scale=1, width=device-width, initial-scale=1, user-scalable=0">
   <script src="svga.lite.min.js"></script>
 </head>
 <body>
@@ -15,7 +15,7 @@
     var parser = new window.SVGA.Parser()
     var player = new window.SVGA.Player('#canvas')
 
-    downloader.request('./assets/angel.svga').then(function (fileData) {
+    downloader.get('./svga/angel.svga').then(function (fileData) {
       parser.do(fileData).then(function (svgaData) {
         player.mount(svgaData).then(function () {
           player.start()

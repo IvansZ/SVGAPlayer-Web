@@ -1,5 +1,5 @@
 export default class Downloader implements Downloader {
-  request (svgaResourceLink: string) {
+  get (svgaResourceLink: string) {
     if (!svgaResourceLink) {
       throw new Error('download link undefined')
     }

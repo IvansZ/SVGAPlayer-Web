@@ -30,11 +30,11 @@ export default class Parser implements Parser {
           resolve(data)
         }
 
-        Parser._worker.onmessage({data})
+        Parser._worker.onmessage({ data })
       } else {
          Parser._worker.postMessage(data)
 
-        Parser._worker.onmessage = ({ data }: { data: VideoEntity}) => {
+        Parser._worker.onmessage = ({ data }: { data: VideoEntity }) => {
           resolve(data)
         }
       }
