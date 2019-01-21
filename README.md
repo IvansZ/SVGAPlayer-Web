@@ -42,7 +42,7 @@ import { Downloader, Parser, Player } from 'svga.lite'
 
 const downloader = new Downloader()
 const parser = new Parser()
-const player = new Player('#canvas')
+const player = new Player('#canvas') // #canvas is HTMLCanvasElement
 
 ;(async () => {
   const fileData = await downloader.get('./xxx.svga')
