@@ -16,8 +16,8 @@ export default class Player implements Player {
   private _renderer: any
   private _animator: any
 
-  constructor (elementSelector: string, public videoItem: VideoEntity, options?: options) {
-    this.container = <HTMLCanvasElement>document.body.querySelector(elementSelector)
+  constructor (element: string | HTMLCanvasElement, public videoItem: VideoEntity, options?: options) {
+    this.container = typeof element === 'string' ? <HTMLCanvasElement>document.body.querySelector(element) : element
 
     if (!this.container) {
       throw new Error('container undefined.')
