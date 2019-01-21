@@ -68,6 +68,7 @@ export default class FrameEntity implements FrameEntity {
               if (typeof shape.styles.fill['b'] === 'number') shape.styles.fill[2] = shape.styles.fill['b']
               if (typeof shape.styles.fill['a'] === 'number') shape.styles.fill[3] = shape.styles.fill['a']
             }
+
             if (shape.styles.stroke) {
               if (typeof shape.styles.stroke['r'] === 'number') shape.styles.stroke[0] = shape.styles.stroke['r']
               if (typeof shape.styles.stroke['g'] === 'number') shape.styles.stroke[1] = shape.styles.stroke['g']
