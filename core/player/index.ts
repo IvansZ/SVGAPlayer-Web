@@ -23,6 +23,10 @@ export default class Player implements Player {
       throw new Error('container undefined.')
     }
 
+    if (!this.container.getContext) {
+      throw new Error('container should be HTMLCanvasElement.')
+    }
+
     this._renderer = new Renderer(this)
 
     this.videoItem && this.mount(videoItem)
