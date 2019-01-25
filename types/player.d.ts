@@ -22,6 +22,7 @@ interface options {
   fillMode: FILL_MODE
   playMode: PLAY_MODE
   startFrame: number
+  endFrame: number
 }
 
 interface Player {

@@ -32,7 +32,7 @@
 
       const player = new Player('#canvas')
 
-      // player
+      player
       //   .$on('start', () => {
       //     console.log('event start')
       //   })
@@ -48,18 +48,20 @@
       //   .$on('clear', () => {
       //     console.log('event clear')
       //   })
-      //   .$on('process', () => {
-      //     console.log('event process', player.progress)
-      //   })
+        // .$on('process', () => {
+        //   // console.log('event process', player.progress)
+        //   console.log('event process', player.currentFrame)
+        // })
 
       await player.mount(svgaData)
 
       player.set({
-        // loop: 0,
+        loop: 1,
         fillMode: 'forwards',
         // fillMode: 'backwards'
         playMode: 'fallbacks',
-        // startFrame: 20
+        startFrame: 20,
+        endFrame: 50
       })
 
       console.log(player)

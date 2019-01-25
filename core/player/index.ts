@@ -20,6 +20,7 @@ export default class Player implements Player {
   public currentFrame: number = 0
   public totalFramesCount: number = 0
   public startFrame: number = 0
+  public endFrame: number = 0
 
   private _renderer: any
   private _animator: any
@@ -45,6 +46,7 @@ export default class Player implements Player {
     options.fillMode && (this.fillMode = options.fillMode)
     options.playMode && (this.playMode = options.playMode)
     options.startFrame && (this.startFrame = options.startFrame)
+    options.endFrame && (this.endFrame = options.endFrame)
   }
 
   public mount (videoItem: VideoEntity) {
@@ -115,10 +117,10 @@ export default class Player implements Player {
   private _startAnimation () {
     this._animator = new Animator()
 
-    const { playMode, totalFramesCount, startFrame } = this
+    const { playMode, totalFramesCount, startFrame, endFrame } = this
 
-    this._animator.startValue = playMode === 'fallbacks' ? totalFramesCount: (startFrame || 0)
-    this._animator.endValue = playMode === 'fallbacks' ? 0 : totalFramesCount
+    this._animator.startValue = playMode === 'fallbacks' ? (endFrame || totalFramesCount) : (startFrame || 0)
+    this._animator.endValue = playMode === 'fallbacks' ? (startFrame || 0) : (endFrame || totalFramesCount)
 
     this._animator.duration = this.videoItem.frames * (1.0 / this.videoItem.FPS) * 1000
     this._animator.loop = this.loop === true || this.loop <= 0 ? Infinity : (this.loop === false ? 1 : this.loop)
