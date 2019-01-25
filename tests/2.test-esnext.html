@@ -16,8 +16,8 @@
 
       const downloader = new Downloader()
 
-      const svgaFile = './svga/TwitterHeart.svga'
-      // const svgaFile = './svga/angel.svga'
+      // const svgaFile = './svga/TwitterHeart.svga'
+      const svgaFile = './svga/angel.svga'
       // const svgaFile = './svga/kingset.svga'
 
       const fileData = await downloader.get(svgaFile)
@@ -32,32 +32,34 @@
 
       const player = new Player('#canvas')
 
-      player
-        .$on('start', () => {
-          console.log('event start')
-        })
-        .$on('pause', () => {
-          console.log('event pause')
-        })
-        .$on('stop', () => {
-          console.log('event stop')
-        })
-        .$on('end', () => {
-          console.log('event end')
-        })
-        .$on('clear', () => {
-          console.log('event clear')
-        })
-        .$on('process', () => {
-          console.log('event process', player.progress)
-        })
+      // player
+      //   .$on('start', () => {
+      //     console.log('event start')
+      //   })
+      //   .$on('pause', () => {
+      //     console.log('event pause')
+      //   })
+      //   .$on('stop', () => {
+      //     console.log('event stop')
+      //   })
+      //   .$on('end', () => {
+      //     console.log('event end')
+      //   })
+      //   .$on('clear', () => {
+      //     console.log('event clear')
+      //   })
+      //   .$on('process', () => {
+      //     console.log('event process', player.progress)
+      //   })
 
       await player.mount(svgaData)
 
       player.set({
-        loop: 1,
-        fillMode: 'forwards'
+        // loop: 0,
+        fillMode: 'forwards',
         // fillMode: 'backwards'
+        playMode: 'fallback',
+        // startFrame: 20
       })
 
       console.log(player)

@@ -12,9 +12,16 @@ enum FILL_MODE {
   BACKWARDS = 'backwards'
 }
 
+enum PLAY_MODE {
+  FORWARDS = 'forwards',
+  FALLBACK = 'fallback'
+}
+
 interface options {
   loop: number | Boolean
   fillMode: FILL_MODE
+  playMode: PLAY_MODE
+  startFrame: number
 }
 
 interface Player {
@@ -23,4 +30,6 @@ interface Player {
   public fillMode: FILL_MODE = FILL_MODE.FORWARDS
   public videoItem: VideoEntity
   public currentFrame: number
+  public totalFramesCount: number
+  public startFrame: number
 }

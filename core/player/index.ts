@@ -6,12 +6,20 @@ enum FILL_MODE {
   BACKWARDS = 'backwards'
 }
 
+enum PLAY_MODE {
+  FORWARDS = 'forwards',
+  FALLBACK = 'fallback'
+}
+
 export default class Player implements Player {
   public container: HTMLCanvasElement
   public loop: number | Boolean = true
   public fillMode: FILL_MODE = FILL_MODE.FORWARDS
-  public progress = 0
-  public currentFrame = 0
+  public playMode: PLAY_MODE = PLAY_MODE.FORWARDS
+  public progress: number = 0
+  public currentFrame: number = 0
+  public totalFramesCount: number = 0
+  public startFrame: number = 0
 
   private _renderer: any
   private _animator: any
@@ -35,12 +43,15 @@ export default class Player implements Player {
   public set (options: options) {
     typeof options.loop !== 'undefined' && (this.loop = options.loop)
     options.fillMode && (this.fillMode = options.fillMode)
+    options.playMode && (this.playMode = options.playMode)
+    options.startFrame && (this.startFrame = options.startFrame)
   }
 
   public mount (videoItem: VideoEntity) {
     return new Promise((resolve, reject) => {
       this.currentFrame = 0
       this.progress = 0
+      this.totalFramesCount = videoItem.frames - 1
       this.videoItem = videoItem
 
       this._renderer.prepare().then(resolve)
@@ -104,8 +115,11 @@ export default class Player implements Player {
   private _startAnimation () {
     this._animator = new Animator()
 
-    this._animator.startValue = 0
-    this._animator.endValue = this.videoItem.frames - 1
+    const { playMode, totalFramesCount, startFrame } = this
+
+    this._animator.startValue = playMode === 'fallback' ? totalFramesCount: (startFrame || 0)
+    this._animator.endValue = playMode === 'fallback' ? 0 : totalFramesCount
+
     this._animator.duration = this.videoItem.frames * (1.0 / this.videoItem.FPS) * 1000
     this._animator.loop = this.loop === true || this.loop <= 0 ? Infinity : (this.loop === false ? 1 : this.loop)
     this._animator.fillRule = this.fillMode === 'backwards' ? 1 : 0
