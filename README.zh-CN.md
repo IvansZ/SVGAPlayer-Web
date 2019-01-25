@@ -68,7 +68,7 @@ const player = new Player('#canvas') // #canvas 是 HTMLCanvasElement
 })()
 ```
 
-## Player 参数
+## Player.set({ 参数 })
 
 属性名 |  说明 | 类型 | 默认值 | 备注
 -|-|-|-|-
