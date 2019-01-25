@@ -15,16 +15,21 @@
 - [ ] 渲染引擎模拟运行在 WebWorker
 - [ ] GPU 加速运算
 
+## 差异
+
+* 不支持 v1.x 格式
+* 不支持声音播放
+
 ## 安装
 
 ### NPM
 
 ```sh
-npm i svga.lite
-
-# or
-
 yarn add svga.lite
+
+# 或者
+
+npm i svga.lite
 ```
 
 ### CDN

@@ -17,16 +17,21 @@ This is a SVGA player on the Web, and its goal is to be lighter and more efficie
 - [ ] Rendering engine simulation runs in the WebWorker
 - [ ] GPU accelerated operation
 
+## Diff
+
+* not support v1.x format
+* not support play sound
+
 ## Install
 
 ### NPM
 
 ```sh
-npm i svga.lite
+yarn add svga.lite
 
 # or
 
-yarn add svga.lite
+npm i svga.lite
 ```
 
 ### CDN
