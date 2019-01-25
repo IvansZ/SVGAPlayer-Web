@@ -14,7 +14,7 @@ enum FILL_MODE {
 
 enum PLAY_MODE {
   FORWARDS = 'forwards',
-  FALLBACK = 'fallback'
+  FALLBACKS = 'fallbacks'
 }
 
 interface options {

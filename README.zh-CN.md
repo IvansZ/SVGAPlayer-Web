@@ -74,7 +74,7 @@ const player = new Player('#canvas') // #canvas 是 HTMLCanvasElement
 -|-|-|-|-
 loop | 循环次数 | `number` | `0` | 设置为 0 时，循环播放
 fillMode | 最后停留的目标应用模式 | `forwards` `backwards` | `forwards` | 类似于 [css animation-fill-mode](https://developer.mozilla.org/zh-CN/docs/Web/CSS/animation-fill-mode)
-playMode | 播放模式 | `forwards` `fallback` | `forwards` |
+playMode | 播放模式 | `forwards` `fallbacks` | `forwards` |
 startFrame | 开始播放帧 | `number` | `0` |
 
 ## LICENSE

@@ -8,7 +8,7 @@ enum FILL_MODE {
 
 enum PLAY_MODE {
   FORWARDS = 'forwards',
-  FALLBACK = 'fallback'
+  FALLBACKS = 'fallbacks'
 }
 
 export default class Player implements Player {
@@ -117,8 +117,8 @@ export default class Player implements Player {
 
     const { playMode, totalFramesCount, startFrame } = this
 
-    this._animator.startValue = playMode === 'fallback' ? totalFramesCount: (startFrame || 0)
-    this._animator.endValue = playMode === 'fallback' ? 0 : totalFramesCount
+    this._animator.startValue = playMode === 'fallbacks' ? totalFramesCount: (startFrame || 0)
+    this._animator.endValue = playMode === 'fallbacks' ? 0 : totalFramesCount
 
     this._animator.duration = this.videoItem.frames * (1.0 / this.videoItem.FPS) * 1000
     this._animator.loop = this.loop === true || this.loop <= 0 ? Infinity : (this.loop === false ? 1 : this.loop)
