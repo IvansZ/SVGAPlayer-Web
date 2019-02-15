@@ -11,7 +11,7 @@ const banner =
 Version: ${version}
 Time: ${moment().format('YYYY-MM-DD HH:mm')}
 Document: https://github.com/yyued/SVGAPlayer-Web/tree/lite
-(c) 2018 YY.UEDC
+(c) 2019 YY.UEDC
 Released under the MIT License.`
 
 const defaultConfig = {

@@ -40,6 +40,10 @@ npm i svga.lite
 
 ## 简单使用
 
+```html
+<canvas id="canvas"></canvas>
+```
+
 ```js
 import { Downloader, Parser, Player } from 'svga.lite'
 
@@ -78,7 +82,7 @@ const player = new Player('#canvas') // #canvas 是 HTMLCanvasElement
 属性名 |  说明 | 类型 | 默认值 | 备注
 -|-|-|-|-
 loop | 循环次数 | `number` | `0` | 设置为 `0` 时，循环播放
-fillMode | 最后停留的目标应用模式 | `forwards` `backwards` | `forwards` | 类似于 [css animation-fill-mode](https://developer.mozilla.org/zh-CN/docs/Web/CSS/animation-fill-mode)
+fillMode | 最后停留的目标模式 | `forwards` `backwards` | `forwards` | 类似于 [css animation-fill-mode](https://developer.mozilla.org/zh-CN/docs/Web/CSS/animation-fill-mode)
 playMode | 播放模式 | `forwards` `fallbacks` | `forwards` |
 startFrame | 开始播放帧 | `number` | `0` |
 endFrame | 结束播放帧 | `number` | `0` | 设置为 `0` 时，默认为 SVGA 文件最后一帧

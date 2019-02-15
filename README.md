@@ -42,6 +42,10 @@ npm i svga.lite
 
 ## Simple Use
 
+```html
+<canvas id="canvas"></canvas>
+```
+
 ```js
 import { Downloader, Parser, Player } from 'svga.lite'
 
