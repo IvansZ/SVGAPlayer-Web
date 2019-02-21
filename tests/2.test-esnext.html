@@ -17,8 +17,9 @@
       const downloader = new Downloader()
 
       // const svgaFile = './svga/loading.svga'
+      const svgaFile = './svga/loading-1.svga'
       // const svgaFile = './svga/TwitterHeart.svga'
-      const svgaFile = './svga/angel.svga'
+      // const svgaFile = './svga/angel.svga'
       // const svgaFile = './svga/kingset.svga'
 
       const fileData = await downloader.get(svgaFile)
@@ -58,11 +59,11 @@
 
       player.set({
         loop: 1,
-        fillMode: 'forwards',
+        // fillMode: 'forwards',
         // fillMode: 'backwards'
-        playMode: 'fallbacks',
-        startFrame: 20,
-        endFrame: 50
+        // playMode: 'fallbacks',
+        // startFrame: 20,
+        // endFrame: 50
       })
 
       console.log(player)
