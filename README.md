@@ -21,6 +21,7 @@ This is a SVGA player on the Web, and its goal is to be lighter and more efficie
 
 * not support v1.x format
 * not support play sound
+* not support `Dynamic-Image` & `Dynamic-Text`
 
 ## Install
 
