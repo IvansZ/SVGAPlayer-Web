@@ -19,6 +19,7 @@
 
 * 不支持 v1.x 格式
 * 不支持声音播放
+* 不支持动态图片、文字
 
 ## 安装
 
@@ -86,6 +87,30 @@ fillMode | 最后停留的目标模式 | `forwards` `backwards` | `forwards` | �
 playMode | 播放模式 | `forwards` `fallbacks` | `forwards` |
 startFrame | 开始播放帧 | `number` | `0` |
 endFrame | 结束播放帧 | `number` | `0` | 设置为 `0` 时，默认为 SVGA 文件最后一帧
+
+## 可复用实例化 Downloader & Parser
+
+```js
+import { Downloader, Parser, Player } from 'svga.lite'
+
+const downloader = new Downloader()
+const parser = new Parser()
+
+const player1 = new Player('#canvas1')
+const player2 = new Player('#canvas2')
+
+const fileData1 = await downloader.get('./1.svga')
+const fileData2 = await downloader.get('./2.svga')
+
+const svgaData1 = await parser.do(fileData1)
+const svgaData2 = await parser.do(fileData2)
+
+await player1.mount(svgaData1)
+await player2.mount(svgaData2)
+
+player1.start()
+player2.start()
+```
 
 ## LICENSE
 

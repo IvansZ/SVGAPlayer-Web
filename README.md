@@ -79,6 +79,30 @@ const player = new Player('#canvas') // #canvas is HTMLCanvasElement
 })()
 ```
 
+## Reusable instantiated Downloader & Parser
+
+```js
+import { Downloader, Parser, Player } from 'svga.lite'
+
+const downloader = new Downloader()
+const parser = new Parser()
+
+const player1 = new Player('#canvas1')
+const player2 = new Player('#canvas2')
+
+const fileData1 = await downloader.get('./1.svga')
+const fileData2 = await downloader.get('./2.svga')
+
+const svgaData1 = await parser.do(fileData1)
+const svgaData2 = await parser.do(fileData2)
+
+await player1.mount(svgaData1)
+await player2.mount(svgaData2)
+
+player1.start()
+player2.start()
+```
+
 ## LICENSE
 
 [MIT](./LICENSE)
