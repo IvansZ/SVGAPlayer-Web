@@ -9,6 +9,8 @@ const rectMake = (x: number, y: number, width: number, height: number): Rect => 
 }
 
 export default class FrameEntity implements FrameEntity {
+  static lastShapes: string = ''
+
   public alpha = 0.0
   public transform = transformMake(1, 0, 0, 1, 0, 0)
   public nx = 0.0
@@ -122,7 +124,12 @@ export default class FrameEntity implements FrameEntity {
         })
       }
 
-      this.shapes = spec.shapes[0] && spec.shapes[0].type === 'keep'? [{ 'type': 'keep' }] : spec.shapes
+      if (spec.shapes[0] && spec.shapes[0].type === 'keep') {
+        this.shapes = FrameEntity.lastShapes
+      } else {
+        FrameEntity.lastShapes = spec.shapes
+        this.shapes = spec.shapes
+      }
     }
 
     let llx = this.transform.a * this.layout.x + this.transform.c * this.layout.y + this.transform.tx

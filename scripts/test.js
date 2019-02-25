@@ -17,7 +17,7 @@ const BrowserSyncOptions = {
   ui: false,
   notify: false,
   ghostMode: false,
-  port: 8080,
+  port: 8888,
   open: true,
   timestamps: true,
   watch: true,
