@@ -30,7 +30,9 @@
     "typescript": "^3.1.1",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.9",
+    "webpack-dev-server": "^3.1.9"
+  },
+  "dependencies": {
     "protobufjs": "git+https://github.com/lilijialiang/protobuf.js.git",
     "zlibjs": "git+https://github.com/lilijialiang/zlib.js.git"
   }
