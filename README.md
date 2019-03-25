@@ -21,7 +21,6 @@ This is a SVGA player on the Web, and its goal is to be lighter and more efficie
 
 * not support v1.x format
 * not support play sound
-* not support `Dynamic-Image` & `Dynamic-Text`
 
 ## Install
 
@@ -77,6 +76,31 @@ const player = new Player('#canvas') // #canvas is HTMLCanvasElement
   // player.pause()
   // player.stop()
   // player.clear()
+})()
+```
+
+## Dynamic Element
+
+You can achieve dynamic element effects by changing the elements of the svga data corresponding to the key values.
+
+```js
+import { Downloader, Parser, Player } from 'svga.lite'
+
+const downloader = new Downloader()
+const parser = new Parser()
+const player = new Player('#canvas')
+
+;(async () => {
+  const fileData = await downloader.get('./xxx.svga')
+  const svgaData = await parser.do(fileData)
+
+  const image = new Image()
+  image.src = 'https://xxx.com/xxx.png'
+  svgaData.images['key'] = image
+
+  await player.mount(svgaData)
+
+  player.start()
 })()
 ```
 
