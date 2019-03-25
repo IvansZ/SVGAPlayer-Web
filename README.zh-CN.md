@@ -89,7 +89,7 @@ endFrame | 结束播放帧 | `number` | `0` | 设置为 `0` 时，默认为 SVGA
 
 ## 动态元素
 
-你能够通过改变 svga data 对应键值的元素，从而达到动态元素的效果。
+你能够通过改变 `svga data` 对应键值的元素，从而达到动态元素的效果。
 
 ```js
 import { Downloader, Parser, Player } from 'svga.lite'
