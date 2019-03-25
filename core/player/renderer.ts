@@ -32,7 +32,7 @@ export default class Renderer {
         for (let imageKey in this._player.videoItem.images) {
           const src = this._player.videoItem.images[imageKey]
 
-          if (src.indexOf('iVBO') === 0 || src.indexOf('/9j/2w') === 0) {
+          if (typeof src === 'string' && (src.indexOf('iVBO') === 0 || src.indexOf('/9j/2w') === 0)) {
             totalCount++
 
             const img = document.createElement('img')
@@ -45,6 +45,8 @@ export default class Renderer {
               loadedCount++
               loadedCount === totalCount && resolve()
             }
+          } else {
+            this._bitmapCache[imageKey] = src
           }
         }
       })

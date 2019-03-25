@@ -22,10 +22,10 @@
       const downloader = new Downloader()
 
       // const svgaFile = './svga/loading.svga'
-      const svgaFile = './svga/loading-1.svga'
+      // const svgaFile = './svga/loading-1.svga'
       // const svgaFile = './svga/TwitterHeart.svga'
       // const svgaFile = './svga/angel.svga'
-      // const svgaFile = './svga/kingset.svga'
+      const svgaFile = './svga/kingset.svga'
 
       const fileData = await downloader.get(svgaFile)
 
@@ -35,6 +35,10 @@
       // const parser = new Parser()
 
       const svgaData = await parser.do(fileData)
+
+      // const image = new Image()
+      // image.src = 'https://iovo-oss.yy.com/yoyi_global/8PrKPO.png'
+      // svgaData.images[99] = image
 
       console.log('SVGA Data', svgaData)
 
