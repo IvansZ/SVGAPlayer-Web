@@ -6,6 +6,7 @@ export default class VideoEntity implements VideoEntity {
   public FPS: number
   public frames: number
   public images = {}
+  public dynamicElements = {}
   public sprites: Array<SpriteEntity> = []
 
   constructor (spec: any, images: any) {

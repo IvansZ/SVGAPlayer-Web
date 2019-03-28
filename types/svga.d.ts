@@ -46,5 +46,6 @@ interface VideoEntity {
   FPS: number
   frames: number
   images: { [key: string]: any }
+  dynamicElements: { [key: string]: any }
   sprites: Array<any>
 }

@@ -79,9 +79,9 @@ const player = new Player('#canvas') // #canvas is HTMLCanvasElement
 })()
 ```
 
-## Dynamic Element
+## Replace Element
 
-You can achieve dynamic element effects by changing the elements of the svga data corresponding to the key values.
+You can change the elements of the `svga data` corresponding to the key values.
 
 ```js
 import { Downloader, Parser, Player } from 'svga.lite'
@@ -102,6 +102,39 @@ const player = new Player('#canvas')
 
   player.start()
 })()
+```
+
+## Dynamic Element
+
+You can insert some dynamic elements with `svga data`.
+
+```js
+const text = 'hello gg'
+const fontCanvas = document.getElementById('font')
+const fontContext = fontCanvas.getContext('2d')
+fontCanvas.height = 30
+fontContext.font = '30px Arial'
+fontContext.textAlign = 'center'
+fontContext.textBaseline = 'middle'
+fontContext.fillStyle = '#000'
+fontContext.fillText(text, fontCanvas.clientWidth / 2, fontCanvas.clientHeight / 2)
+
+const { Downloader, Parser, Player } = SVGA
+
+const downloader = new Downloader()
+const parser = new Parser()
+const player = new Player('#canvas')
+
+const svgaFile = './svga/kingset.svga'
+
+const fileData = await downloader.get(svgaFile)
+const svgaData = await parser.do(fileData)
+
+svgaData.dynamicElements['banner'] = fontCanvas
+
+await player.mount(svgaData)
+
+player.start()
 ```
 
 ## Reusable instantiated Downloader & Parser

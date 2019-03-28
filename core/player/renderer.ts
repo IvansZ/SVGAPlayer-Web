@@ -10,6 +10,7 @@ export default class Renderer {
     private _player: Player
     private _canvasContext: CanvasRenderingContext2D
     private _bitmapCache: {[key: string]: HTMLImageElement} = {}
+    private _dynamicElements: {[key: string]: any} = {}
 
     constructor (player: Player) {
       this._player = player
@@ -25,6 +26,8 @@ export default class Renderer {
 
           return void 0
         }
+
+        this._dynamicElements = this._player.videoItem.dynamicElements
 
         let totalCount = 0
         let loadedCount = 0
@@ -83,6 +86,12 @@ export default class Renderer {
           }
 
           context.drawImage(img, 0, 0)
+        }
+
+        const dynamicElements = this._dynamicElements[sprite.imageKey]
+
+        if (dynamicElements) {
+          context.drawImage(dynamicElements, (frameItem.layout.width - dynamicElements.width) / 2, (frameItem.layout.height - dynamicElements.height) / 2)
         }
 
         frameItem.shapes && frameItem.shapes.forEach((shape: any) => {

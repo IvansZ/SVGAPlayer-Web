@@ -87,9 +87,9 @@ playMode | 播放模式 | `forwards` `fallbacks` | `forwards` |
 startFrame | 开始播放帧 | `number` | `0` |
 endFrame | 结束播放帧 | `number` | `0` | 设置为 `0` 时，默认为 SVGA 文件最后一帧
 
-## 动态元素
+## 替换元素
 
-你能够通过改变 `svga data` 对应键值的元素，从而达到动态元素的效果。
+你能够通过改变 `svga data` 对应键值的元素
 
 ```js
 import { Downloader, Parser, Player } from 'svga.lite'
@@ -110,6 +110,39 @@ const player = new Player('#canvas')
 
   player.start()
 })()
+```
+
+## 动态元素
+
+你可以通过 `svga data` 插入一些动态元素
+
+```js
+const text = 'hello gg'
+const fontCanvas = document.getElementById('font')
+const fontContext = fontCanvas.getContext('2d')
+fontCanvas.height = 30
+fontContext.font = '30px Arial'
+fontContext.textAlign = 'center'
+fontContext.textBaseline = 'middle'
+fontContext.fillStyle = '#000'
+fontContext.fillText(text, fontCanvas.clientWidth / 2, fontCanvas.clientHeight / 2)
+
+const { Downloader, Parser, Player } = SVGA
+
+const downloader = new Downloader()
+const parser = new Parser()
+const player = new Player('#canvas')
+
+const svgaFile = './svga/kingset.svga'
+
+const fileData = await downloader.get(svgaFile)
+const svgaData = await parser.do(fileData)
+
+svgaData.dynamicElements['banner'] = fontCanvas
+
+await player.mount(svgaData)
+
+player.start()
 ```
 
 ## 可复用实例化 Downloader & Parser
