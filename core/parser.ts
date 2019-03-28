@@ -5,8 +5,8 @@ const WORKER = '#INLINE_WROKER#'
 export default class Parser implements Parser {
   public worker?: any
 
-  constructor ({ worker } = { worker: true }) {
-    if (worker) {
+  constructor ({ disableWorker } = { disableWorker: false }) {
+    if (!disableWorker) {
       this.worker = new Worker(window.URL.createObjectURL(new Blob([WORKER])))
     } else {
       /* eslint-disable */
@@ -25,7 +25,8 @@ export default class Parser implements Parser {
     }
 
     return new Promise((resolve, reject) => {
-      if (this.worker.mock) {
+      console.log(this.worker.disableWorker)
+      if (this.worker.disableWorker) {
         this.worker.onmessageCallback = (data: VideoEntity) => {
           resolve(data)
         }

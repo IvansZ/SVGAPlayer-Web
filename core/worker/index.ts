@@ -15,7 +15,7 @@ if (!self.document) {
 } else {
   worker = self.SVGAMockWorker = {}
 
-  worker.mock = true
+  worker.disableWorker = true
 
   worker.postMessage = function (data: VideoEntity) {
     worker.onmessageCallback && worker.onmessageCallback(data)

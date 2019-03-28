@@ -23,15 +23,15 @@
 
       // const svgaFile = './svga/loading.svga'
       // const svgaFile = './svga/loading-1.svga'
-      // const svgaFile = './svga/TwitterHeart.svga'
+      const svgaFile = './svga/TwitterHeart.svga'
       // const svgaFile = './svga/angel.svga'
-      const svgaFile = './svga/kingset.svga'
+      // const svgaFile = './svga/kingset.svga'
 
       const fileData = await downloader.get(svgaFile)
 
       console.log('File Data', fileData)
 
-      const parser = new Parser({ mock: false })
+      const parser = new Parser({ disableWorker: true })
       // const parser = new Parser()
 
       const svgaData = await parser.do(fileData)
