@@ -67,7 +67,7 @@ const player = new Player('#canvas') // #canvas is HTMLCanvasElement
   player
     .$on('start', () => console.log('event start'))
     .$on('pause', () => console.log('event pause'))
-    .$on('stop', () => console.log('event stop')
+    .$on('stop', () => console.log('event stop'))
     .$on('end', () => console.log('event end'))
     .$on('clear', () => console.log('event clear'))
     .$on('process', () => console.log('event process', player.progress))
