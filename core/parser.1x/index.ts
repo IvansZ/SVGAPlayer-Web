@@ -1,6 +1,4 @@
-/// <reference path="../types/svga.d.ts" />
-
-const WORKER = '#INLINE_PARSER_WROKER#'
+const WORKER = '#INLINE_PARSER1x_WROKER#'
 
 export default class Parser implements Parser {
   public worker?: any
@@ -18,8 +16,8 @@ export default class Parser implements Parser {
   do (data: ArrayBuffer): void | Promise<Object> {
     const dataHeader = new Uint8Array(data, 0, 4)
 
-    if (dataHeader[0] == 80 && dataHeader[1] == 75 && dataHeader[2] == 3 && dataHeader[3] == 4) {
-      throw 'this parser not support version@1.x of svga.'
+    if (!(dataHeader[0] == 80 && dataHeader[1] == 75 && dataHeader[2] == 3 && dataHeader[3] == 4)) {
+      throw 'this parser only support version@1.x of svga.'
     }
 
     if (!data) {

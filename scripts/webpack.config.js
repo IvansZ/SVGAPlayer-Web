@@ -6,7 +6,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const { version } = require('../package.json')
 
 const banner =
-`[name].min.js
+`[name]
 
 Version: ${version}
 Time: ${moment().format('YYYY-MM-DD HH:mm')}
@@ -18,6 +18,12 @@ const defaultConfig = {
   mode: 'production',
   module: {
     rules: [
+      {
+        test: /\.raw$/,
+        use: [
+          'raw-loader'
+        ]
+      },
       {
         test: /\.js$/,
         use: [
@@ -55,7 +61,7 @@ const defaultConfig = {
   }
 }
 
-const outputPath = path.resolve(__dirname, `../${process.env.NODE_ENV === 'test' ? 'tests/dist' : 'dist'}`)
+const outputPath = path.resolve(__dirname, `../${process.env.NODE_ENV === 'test' ? 'tests' : ''}`)
 
 const ForkTsCheckerWebpackPluginConfig = new ForkTsCheckerWebpackPlugin({
   workers: 2,
@@ -82,7 +88,7 @@ module.exports = [
   },
   {
     entry: {
-      'svga.lite.worker': './core/worker/index.ts'
+      'parser.worker': './core/parser.worker/index.ts'
     },
     output: {
       path: outputPath,
@@ -90,6 +96,52 @@ module.exports = [
     },
     plugins: [
       ForkTsCheckerWebpackPluginConfig
+    ],
+    ...defaultConfig
+  },
+  {
+    entry: {
+      'parser.1x': './core/parser.1x/index.ts'
+    },
+    output: {
+      path: outputPath,
+      filename: '[name].js',
+      libraryTarget: 'umd',
+      library: 'SVGAParser1x',
+      libraryExport: 'default'
+    },
+    plugins: [
+      ForkTsCheckerWebpackPluginConfig,
+      new webpack.BannerPlugin(banner)
+    ],
+    ...defaultConfig
+  },
+  {
+    entry: {
+      'parser1x.worker': './core/parser.1x/worker.js'
+    },
+    output: {
+      path: outputPath,
+      filename: '[name].min.js'
+    },
+    plugins: [
+      ForkTsCheckerWebpackPluginConfig
+    ],
+    ...defaultConfig
+  },
+  {
+    entry: {
+      'util': './core/util.ts'
+    },
+    output: {
+      path: outputPath,
+      filename: '[name].js',
+      libraryTarget: 'umd',
+      library: 'SVGAUtil'
+    },
+    plugins: [
+      ForkTsCheckerWebpackPluginConfig,
+      new webpack.BannerPlugin(banner)
     ],
     ...defaultConfig
   }

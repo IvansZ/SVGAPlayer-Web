@@ -13,7 +13,7 @@ let worker: any
 if (!self.document) {
   worker = self
 } else {
-  worker = self.SVGAMockWorker = {}
+  worker = self.SVGAParserMockWorker = {}
 
   worker.disableWorker = true
 

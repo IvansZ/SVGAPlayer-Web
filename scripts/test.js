@@ -3,14 +3,17 @@ process.env.NODE_ENV = 'test'
 const path = require('path')
 const browserSync = require('browser-sync')
 const webpack = require('webpack')
+const fs = require('fs-extra')
 const config = require('./webpack.config.js')
 const inlineWorker = require('./inline-worker')
 
 let isInitBrowserSync = false
 
+const testPath = path.resolve(__dirname, '../tests')
+
 const BrowserSyncOptions = {
   server: {
-    baseDir: path.resolve(__dirname, '../tests'),
+    baseDir: testPath,
     directory: true
   },
   https: false,

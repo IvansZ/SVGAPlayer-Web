@@ -19,7 +19,6 @@ This is a SVGA player on the Web, and its goal is to be lighter and more efficie
 
 ## Diff
 
-* not support v1.x format
 * not support play sound
 
 ## Install
@@ -37,7 +36,7 @@ npm i svga.lite
 ### CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/svga.lite/dist/svga.lite.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/svga.lite/svga.lite.min.js"></script>
 ```
 
 ## Simple Use
@@ -77,6 +76,30 @@ const player = new Player('#canvas') // #canvas is HTMLCanvasElement
   // player.stop()
   // player.clear()
 })()
+```
+
+## Support v1.x of SVGA (v1.2.0+)
+
+```js
+import { Downloader, Parser, Player } from 'svga.lite'
+import Parser1x from 'svga.lite/parser.1x'
+import util from 'svga.lite/util'
+
+const downloader = new Downloader()
+
+const svgaFile = './svga/show.svga'
+
+const fileData = await downloader.get(svgaFile)
+
+const parser = util.version(fileData) === 1 ? new Parser1x() : new Parser()
+
+const svgaData = await parser.do(fileData)
+
+const player = new Player('#canvas')
+
+await player.mount(svgaData)
+
+player.start()
 ```
 
 ## Replace Element
