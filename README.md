@@ -49,6 +49,7 @@ npm i svga.lite
 import { Downloader, Parser, Player } from 'svga.lite'
 
 const downloader = new Downloader()
+// calls WebWorker parsing by default, configurable `new Parser({ disableWorker: true })`
 const parser = new Parser()
 const player = new Player('#canvas') // #canvas is HTMLCanvasElement
 
@@ -91,6 +92,7 @@ const svgaFile = './svga/show.svga'
 
 const fileData = await downloader.get(svgaFile)
 
+// Parser1x calls WebWorker parsing by default, configurable `new Parser1x({ disableWorker: true })`
 const parser = util.version(fileData) === 1 ? new Parser1x() : new Parser()
 
 const svgaData = await parser.do(fileData)

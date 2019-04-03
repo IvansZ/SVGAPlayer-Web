@@ -47,6 +47,7 @@ npm i svga.lite
 import { Downloader, Parser, Player } from 'svga.lite'
 
 const downloader = new Downloader()
+// 默认调用 WebWorker 解析，可配置 new Parser({ disableWorker: true }) 禁止
 const parser = new Parser()
 const player = new Player('#canvas') // #canvas 是 HTMLCanvasElement
 
@@ -98,7 +99,7 @@ const downloader = new Downloader()
 const svgaFile = './svga/show.svga'
 
 const fileData = await downloader.get(svgaFile)
-
+// Parser1x 默认调用 WebWorker 解析，可配置 new Parser1x({ disableWorker: true }) 禁止
 const parser = util.version(fileData) === 1 ? new Parser1x() : new Parser()
 
 const svgaData = await parser.do(fileData)
