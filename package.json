@@ -1,6 +1,6 @@
 {
   "name": "svga.lite",
-  "version": "1.2.0-beta.2",
+  "version": "1.2.0-beta.3",
   "description": "",
   "main": "svga.lite.min.js",
   "scripts": {
@@ -30,12 +30,10 @@
     "typescript": "^3.1.1",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.9"
-  },
-  "dependencies": {
+    "webpack-dev-server": "^3.1.9",
     "jszip": "3.2.1",
-    "protobufjs": "git+https://github.com/lilijialiang/protobuf.js.git",
+    "protobufjs": "git+https://github.com/lijialiang/protobuf.js.git",
     "raw-loader": "^2.0.0",
-    "zlibjs": "git+https://github.com/lilijialiang/zlib.js.git"
+    "zlibjs": "git+https://github.com/lijialiang/zlib.js.git"
   }
 }

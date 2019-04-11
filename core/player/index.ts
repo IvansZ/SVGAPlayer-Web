@@ -94,6 +94,7 @@ export default class Player implements Player {
     this._renderer.clear()
     this._animator = null
     this._renderer = null
+    this.videoItem = <any>null
   }
 
   private $onEvent: {
@@ -114,6 +115,10 @@ export default class Player implements Player {
 
   public $on (eventName: EVENT_TYPES, execFunction: Function) {
     this.$onEvent[eventName] = execFunction
+
+    if (eventName === 'end') {
+      this._animator.onEnd = () => this.$onEvent.end()
+    }
 
     return this
   }
@@ -146,8 +151,6 @@ export default class Player implements Player {
 
       this.$onEvent.process()
     }
-
-    this._animator.onEnd = () => this.$onEvent.end()
 
     this._animator.start(this.currentFrame)
   }

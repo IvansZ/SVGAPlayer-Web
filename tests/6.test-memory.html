@@ -18,31 +18,37 @@
   const util = window.SVGAUtil
   const Parser1x = window.SVGAParser1x
   const { Downloader, Player, Parser } = SVGA
+  const SVGAFileURL = './svga/angel.svga'
 
   async function mount () {
     const downloader = new Downloader()
-    const svgaFile = './svga/angel.svga'
-    const fileData = await downloader.get(svgaFile)
+    const fileData = await downloader.get(SVGAFileURL)
     const parser = util.version(fileData) === 1 ? new Parser1x() : new Parser()
     const svgaData = await parser.do(fileData)
     parser.destroy()
-    console.log('finish')
+    console.log('end')
   }
 
   async function play () {
     const downloader = new Downloader()
-    const svgaFile = './svga/show.svga'
-    const fileData = await downloader.get(svgaFile)
+    const fileData = await downloader.get(SVGAFileURL)
     const parser = util.version(fileData) === 1 ? new Parser1x() : new Parser()
     const svgaData = await parser.do(fileData)
     const player = new Player('#canvas')
+    player.set({ loop: 1 })
     await player.mount(svgaData)
     player.start()
+    player.$on('end', () => {
+      // 第二次未能被销毁
+      // parser.destroy()
+      // player.destroy()
+      // console.log('end')
 
-    setTimeout(() => {
-      parser.destroy()
-      player.destroy()
-      console.log('finish')
-    }, 5000)
+      setTimeout(() => {
+        parser.destroy()
+        player.destroy()
+        console.log('end')
+      }, 0)
+    })
   }
 </script>
