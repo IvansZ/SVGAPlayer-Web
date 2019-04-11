@@ -1,5 +1,5 @@
 export default class Animator {
-  private static _currentTimeMillsecond: () => number = () => {
+  public _currentTimeMillsecond: () => number = () => {
     if (typeof performance === 'undefined') {
       return new Date().getTime()
     }
@@ -7,7 +7,7 @@ export default class Animator {
     return performance.now()
   }
 
-  private static _requestAnimationFrame: (callback: () => void) => any = (callback) => {
+  public _requestAnimationFrame: (callback: () => void) => any = (callback) => {
     callback && setTimeout(callback, 16)
   }
 
@@ -39,7 +39,7 @@ export default class Animator {
 
   private doStart (currentValue: number) {
     this._isRunning = true
-    this._mStartTime = Animator._currentTimeMillsecond()
+    this._mStartTime = this._currentTimeMillsecond()
 
     currentValue && (this._mStartTime -= currentValue / (this.endValue - this.startValue) * this.duration)
 
@@ -55,10 +55,10 @@ export default class Animator {
 
   private _doFrame () {
     if (this._isRunning) {
-      this._doDeltaTime(Animator._currentTimeMillsecond() - this._mStartTime)
+      this._doDeltaTime(this._currentTimeMillsecond() - this._mStartTime)
 
       if (this._isRunning) {
-        Animator._requestAnimationFrame(this._doFrame.bind(this))
+        this._requestAnimationFrame(this._doFrame.bind(this))
       }
     }
   }

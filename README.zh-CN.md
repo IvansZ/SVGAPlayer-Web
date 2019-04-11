@@ -193,6 +193,16 @@ player1.start()
 player2.start()
 ```
 
+## 销毁实例
+
+```js
+const parser = new Parser()
+parser.destroy()
+
+const player = new Player('#canvas')
+player.destroy()
+```
+
 ## LICENSE
 
 [MIT](./LICENSE)

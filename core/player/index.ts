@@ -57,7 +57,7 @@ export default class Player implements Player {
       this.videoItem = videoItem
 
       this._renderer.prepare().then(resolve)
-      this.clear()
+      this._renderer.clear()
       this._setSize()
     })
   }
@@ -66,30 +66,34 @@ export default class Player implements Player {
     if (!this.videoItem) {
       throw new Error('video item undefined.')
     }
-
-    this.clear()
+    this._renderer.clear()
     this._startAnimation()
-
     this.$onEvent.start()
   }
 
   public pause () {
-    this._animator.stop()
+    this._animator && this._animator.stop()
     this.$onEvent.pause()
   }
 
   public stop () {
-    this._animator.stop()
-
+    this._animator && this._animator.stop()
     this.currentFrame = 0
     this._renderer.drawFrame(this.currentFrame)
-
     this.$onEvent.stop()
   }
 
   public clear () {
+    this._animator && this._animator.stop()
     this._renderer.clear()
     this.$onEvent.clear()
+  }
+
+  public destroy () {
+    this._animator && this._animator.stop()
+    this._renderer.clear()
+    this._animator = null
+    this._renderer = null
   }
 
   private $onEvent: {

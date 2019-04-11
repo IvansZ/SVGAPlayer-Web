@@ -46,4 +46,8 @@ export default class Parser implements Parser {
       }
     })
   }
+
+  destroy () {
+    this.worker.terminate && this.worker.terminate()
+  }
 }
