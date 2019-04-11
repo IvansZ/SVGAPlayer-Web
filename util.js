@@ -1,8 +1,8 @@
 /*!
  * util
  * 
- * Version: 1.2.0-beta.3
- * Time: 2019-04-11 16:36
+ * Version: 1.2.0-beta.4
+ * Time: 2019-04-11 17:47
  * Document: https://github.com/yyued/SVGAPlayer-Web/tree/lite
  * (c) 2019 YY.UEDC
  * Released under the MIT License.

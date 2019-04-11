@@ -1,7 +1,7 @@
 {
   "name": "svga.lite",
-  "version": "1.2.0-beta.3",
-  "description": "",
+  "version": "1.2.0-beta.4",
+  "description": "Lightweight SVGA Web Player",
   "main": "svga.lite.min.js",
   "scripts": {
     "test": "node ./scripts/test.js",

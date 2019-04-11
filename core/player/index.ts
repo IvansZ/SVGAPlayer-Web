@@ -37,7 +37,7 @@ export default class Player implements Player {
     }
 
     this._renderer = new Renderer(this)
-
+    this._animator = new Animator()
     this.videoItem && this.mount(videoItem)
   }
 
@@ -124,8 +124,6 @@ export default class Player implements Player {
   }
 
   private _startAnimation () {
-    this._animator = new Animator()
-
     const { playMode, totalFramesCount, startFrame, endFrame } = this
 
     this._animator.startValue = playMode === 'fallbacks' ? (endFrame || totalFramesCount) : (startFrame || 0)
