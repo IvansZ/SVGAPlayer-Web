@@ -193,7 +193,7 @@ player1.start()
 player2.start()
 ```
 
-## 销毁实例
+## 销毁实例 (v1.2.0+)
 
 ```js
 const parser = new Parser()

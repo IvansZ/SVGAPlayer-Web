@@ -186,7 +186,7 @@ player1.start()
 player2.start()
 ```
 
-## Destroy Instance
+## Destroy Instance (v1.2.0+)
 
 ```js
 const parser = new Parser()
