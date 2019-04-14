@@ -27,7 +27,12 @@
       // const svgaFile = './svga/angel.svga'
       // const svgaFile = './svga/kingset.svga'
 
-      const fileData = await downloader.get(svgaFile)
+      let fileData
+      try {
+        fileData = await downloader.get(svgaFile)
+      } catch (error) {
+        throw error
+      }
 
       console.log('File Data', fileData)
 

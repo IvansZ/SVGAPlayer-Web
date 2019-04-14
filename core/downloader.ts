@@ -11,7 +11,13 @@ export default class Downloader implements Downloader {
 
       request.responseType = 'arraybuffer'
 
-      request.onloadend = () => resolve(request.response)
+      request.onloadend = () => {
+        if (request.response && (request.status === 200 || request.status === 304)) {
+          resolve(request.response)
+        } else {
+          reject(request)
+        }
+      }
       request.onerror = () => reject(request.response)
 
       request.send()
